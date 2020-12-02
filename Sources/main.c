@@ -1,6 +1,7 @@
 #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
 #include "pi_control.h"
+#include "LCD.h" 
 
 #define UPDATE_RATE_S 0.5
 #define CLOCK_FREQ 24000000
@@ -69,6 +70,7 @@ void main(void) {
 	for(;;)
 	{
 		RunController(&controller, GetTemperature(), UPDATE_RATE_S);
+		LCD(temp);
 		SetFanSpeed(controller.output);
 		DelayTicks(UPDATE_RATE_S, PRESCALER);
 	}
